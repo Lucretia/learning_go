@@ -17,7 +17,7 @@ import (
 // }
 
 func Sqrt(x float64) float64 {
-	z := 1.0
+	z := x / 2
 	oldZ := 0.0
 
 	for {
