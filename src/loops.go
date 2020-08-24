@@ -35,5 +35,5 @@ func Sqrt(x float64) float64 {
 }
 
 func main() {
-	fmt.Println(" => ", Sqrt(3))
+	fmt.Println(" => ", Sqrt(3), "\tExpected: ", math.Sqrt(3))
 }
