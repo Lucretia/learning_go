@@ -1,6 +1,10 @@
 package main
 
-import "golang.org/x/tour/tree"
+import (
+	"fmt"
+
+	"golang.org/x/tour/tree"
+)
 
 // Walk walks the tree t sending all values
 // from the tree to the channel ch.
@@ -9,11 +13,11 @@ func Walk(t *tree.Tree, ch chan int) {
 		Walk(t.Left, ch)
 	}
 
+	ch <- t.Value / 10
+
 	if t.Right != nil {
 		Walk(t.Right, ch)
 	}
-
-	ch <- t.Value
 }
 
 // Same determines whether the trees
@@ -25,5 +29,11 @@ func Same(t1, t2 *tree.Tree) bool {
 func main() {
 	ch := make(chan int)
 
-	go Walk(tree.New(1), ch)
+	go Walk(tree.New(10), ch)
+
+	for i := 0; i < 10; i++ {
+		v := <-ch
+
+		fmt.Println(v)
+	}
 }
